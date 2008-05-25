@@ -13,8 +13,22 @@ describe Curator do
       @new_curator.should equal(@it)
     end
 
-    it "should allow new collections to be added" do
-      @it.add_collection("Ming Vases", :filesystem, "file:///home/avdi/vases")
+    it "should have no collections" do
+      @it.should have(0).collections
+    end
+    describe "with a new collection added" do
+      before :each do
+        @it.add_collection("Ming Vases", :filesystem, "file:///home/avdi/vases")
+      end
+
+      specify { @it.should have(1).collections }
+
+      it "should store collection metadata" do
+        collection = @it.collections.first
+        collection.name.should == "Ming Vases"
+        collection.type.should == :filesystem
+        collection.uri.should == "file:///home/avdi/vases"
+      end
     end
 
   end

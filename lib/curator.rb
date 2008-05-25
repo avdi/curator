@@ -6,7 +6,17 @@ require 'facets/multiton'
 
 class Curator
   include Multiton
-  def initialize(id, em)
 
+  Collection = Struct.new(:name, :type, :uri)
+
+  # The collections of artifacts this curator catalogs
+  attr_reader :collections
+
+  def initialize(id, em)
+    @collections = []
+  end
+
+  def add_collection(name, type, uri)
+    @collections << Collection.new(name, type, uri)
   end
 end
