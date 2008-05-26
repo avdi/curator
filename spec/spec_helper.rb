@@ -6,5 +6,5 @@ rescue LoadError
   require 'spec'
 end
 
-$:.unshift(File.dirname(__FILE__) + '/../lib')
+require File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib', 'environment'))
 require 'curator'

@@ -768,7 +768,6 @@ module Sinatra
         require 'markaby'
         output = ::Markaby::Builder.new(options.fetch(:locals){{}},
                                         options.fetch(:scope){self})
-        output.tagset = ::Markaby::XHTMLStrict
         case content
         when String then output.instance_eval(content)
         when Proc then output.capture(&content)

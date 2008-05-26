@@ -36,13 +36,13 @@ module Markaby
       @@default[option] = value
     end
 
-    def self.ignored_helpers 
-      @@ignored_helpers ||= [] 
-    end 
- 
-    def self.ignore_helpers(*helpers) 
-      ignored_helpers.concat helpers 
-    end 
+    def self.ignored_helpers
+      @@ignored_helpers ||= []
+    end
+
+    def self.ignore_helpers(*helpers)
+      ignored_helpers.concat helpers
+    end
 
     attr_accessor :output_helpers, :tagset
 
@@ -70,7 +70,7 @@ module Markaby
       @@default.each do |k, v|
         instance_variable_set("@#{k}", @assigns.delete(k) || v)
       end
-      
+
       @assigns.each do |k, v|
         instance_variable_set("@#{k}", v)
       end
@@ -119,11 +119,11 @@ module Markaby
               raise InvalidXhtmlError, "no element `#{tag}' for #{tagset.doctype}"
           elsif args.last.respond_to?(:to_hash)
               attrs = args.last.to_hash
-              
+
               if @tagset.forms.include?(tag) and attrs[:id]
                 attrs[:name] ||= attrs[:id]
               end
-              
+
               attrs.each do |k, v|
                   atname = k.to_s.downcase.intern
                   unless k =~ /:/ or @tagset.tagset[tag].include? atname
@@ -179,7 +179,7 @@ module Markaby
         instance_variable_get(ivar)
       elsif !@helpers.nil? && @helpers.instance_variables.include?(ivar)
         @helpers.instance_variable_get(ivar)
-      elsif ::Builder::XmlMarkup.instance_methods.include?(sym.to_s) 
+      elsif ::Builder::XmlMarkup.instance_methods.include?(sym.to_s)
         @builder.__send__(sym, *args, &block)
       elsif @tagset.nil?
         tag!(sym, *args, &block)
@@ -213,7 +213,7 @@ module Markaby
     end
 
     remove_method :head
-    
+
     # Builds a head tag.  Adds a <tt>meta</tt> tag inside with Content-Type
     # set to <tt>text/html; charset=utf-8</tt>.
     def head(*args, &block)
@@ -285,5 +285,5 @@ module Markaby
   class XmlMarkup < ::Builder::XmlMarkup
     attr_accessor :target, :level
   end
-  
+
 end
