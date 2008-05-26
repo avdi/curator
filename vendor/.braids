@@ -1,0 +1,7 @@
+--- 
+sinatra: 
+  local_branch: braid/git/sinatra/master
+  type: git
+  branch: master
+  squash: true
+  remote: git://github.com/bmizerany/sinatra.git
