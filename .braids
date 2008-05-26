@@ -5,3 +5,10 @@ vendor/markaby:
   revision: 
   squash: true
   remote: http://code.whytheluckystiff.net/svn/markaby/trunk
+vendor/sinatra: 
+  local_branch: braid/git/vendor/sinatra/master
+  type: git
+  revision: 
+  branch: master
+  squash: true
+  remote: git://github.com/bmizerany/sinatra.git
