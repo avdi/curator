@@ -1,21 +1,13 @@
+require 'pathname'
+ROOT = Pathname.new(__FILE__).dirname
+Pathname.glob(ROOT + 'vendor' + '*' + 'lib').each do |path|
+  $LOAD_PATH.unshift(path.to_s)
+end
+
 require 'rubygems'
 require 'sinatra'
 require 'builder'
 require 'markaby'
-
-# Monkeypatch Markaby so as not to collide with XML::Builder renderer
-class Markaby::Builder
-  def capture(&block)
-    @streams.push(@builder.target = [])
-    @builder.level += 1
-    str = instance_eval(&block)
-    str = @streams.last.join if @streams.last.any?
-    @streams.pop
-    @builder.level -= 1
-    @builder.target = @streams.last
-    str
-  end
-end
 
 module MarkabyRenderer
   def mab(content=nil, options={}, &block)
