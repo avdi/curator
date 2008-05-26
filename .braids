@@ -1,0 +1,6 @@
+--- 
+vendor/markaby: 
+  local_branch: braid/svn/vendor/markaby
+  type: svn
+  squash: true
+  remote: http://code.whytheluckystiff.net/svn/markaby/trunk
